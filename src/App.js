@@ -61,12 +61,6 @@ class App extends React.Component {
       movieList = <MovieList movies={this.state.movies} itemSelected={this.showMovieDetail} />;
     }
 
-    let detailedInfo = null;
-    if (this.state.detailLoading) {
-      detailedInfo = <ProgressBar active now={100} />;
-    } else {
-      detailedInfo = <MovieDetail movie={this.state.selectedMovie} />;
-    }
           
     return (
       <div>
@@ -93,12 +87,11 @@ class App extends React.Component {
             </Col>
 
             <Col xs={8}>
-              {detailedInfo}
+              <MovieDetail movie={this.state.selectedMovie} loading={this.state.detailLoading}/>
             </Col>
           </Row>
         </Grid>
       </div>
-      
     );
   }
 }

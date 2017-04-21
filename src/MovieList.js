@@ -13,7 +13,6 @@ class MovieList extends React.Component {
   }
 
   rowClicked(imdbID) {
-
     this.props.itemSelected(imdbID);
 
     this.setState({selected: imdbID});

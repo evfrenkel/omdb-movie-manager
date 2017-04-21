@@ -1,15 +1,19 @@
 import React from 'react';
 
-import { Panel, Label, Button, Thumbnail, Row, Col, Table } from 'react-bootstrap';
+import { Panel, Label, Button, Thumbnail, Row, Col, Table, ProgressBar } from 'react-bootstrap';
 
 class MovieDetail extends React.Component {
 
   render() {
-    if(this.props.movie === undefined) 
+    if(this.props.movie === undefined) {
+      if(this.props.loading) {
+        return (<Panel><ProgressBar active now={100} /> </Panel>);
+      }
       return (<div></div>);
+    }
+
     return (
       <Panel>
-
           <Row>
             <Col xs={4}>
               <Thumbnail src={this.props.movie.Poster} alt="Poster" />
@@ -45,13 +49,11 @@ class MovieDetail extends React.Component {
               </Table>
             </Col>
           </Row>
-
         <h2>{this.props.movie.Title}  </h2>
         <h4> <Label>{this.props.movie.Rated}</Label> {this.props.movie.Year}  </h4>
         <p className="lead">{this.props.movie.Plot}</p> 
-        
-        <Button>Add to Favorites</Button>
 
+        <Button>Add to Favorites</Button>
       </Panel>
     );
   }

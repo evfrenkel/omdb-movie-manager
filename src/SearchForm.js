@@ -31,14 +31,11 @@ class SearchForm extends React.Component {
     this.props.newSearch(this.state.currentStr);
   }
   
-
-
   render() {
     let history = this.state.searchHistory.map((str,i) => 
                 <MenuItem key={i} eventKey={str} onSelect={this.handleHistoryItem}> {str} </MenuItem> );
 
     return (
-
       <form onSubmit={this.handleSubmit}>
         <FormGroup controlId="title">
           <ControlLabel>Title</ControlLabel>  
@@ -53,7 +50,6 @@ class SearchForm extends React.Component {
           </DropdownButton>
         </FormGroup>
       </form>
-      
     );
   }
 }
