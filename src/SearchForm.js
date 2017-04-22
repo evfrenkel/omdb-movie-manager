@@ -25,6 +25,7 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     this.setState((prevState, props) => ({
       searchHistory: [prevState.currentStr].concat(prevState.searchHistory)
     }));

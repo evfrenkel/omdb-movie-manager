@@ -3,6 +3,12 @@ import React from 'react';
 import { Panel, Label, Button, Thumbnail, Row, Col, Table, ProgressBar } from 'react-bootstrap';
 
 class MovieDetail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isFavorite: this.props.isFavorite };
+  }
+
 
   render() {
     if(this.props.movie === undefined) {
@@ -53,7 +59,8 @@ class MovieDetail extends React.Component {
         <h4> <Label>{this.props.movie.Rated}</Label> {this.props.movie.Year}  </h4>
         <p className="lead">{this.props.movie.Plot}</p> 
 
-        <Button>Add to Favorites</Button>
+        <Button onClick={this.props.toggleFavorite(this.props.movie)}> Add to Favorites </Button>
+
       </Panel>
     );
   }
@@ -63,7 +70,6 @@ export default MovieDetail;
 
 
 /* 
-
 Country
 
 "Ratings":[{"Source":"Internet Movie Database","Value":"7.1/10"},

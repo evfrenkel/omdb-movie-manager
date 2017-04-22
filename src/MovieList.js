@@ -8,25 +8,23 @@ class MovieList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {selected: 'null'};
+    this.state = {selected: this.props.selectedMovieID};
     this.rowClicked = this.rowClicked.bind(this);
   }
 
   rowClicked(imdbID) {
-    this.props.itemSelected(imdbID);
+    this.props.itemClicked(imdbID);
 
     this.setState({selected: imdbID});
   }
 
   render() {
-    var rows = [];
 
-    this.props.movies.forEach(movie => {
-          var active = false;
-          if(this.state.selected === movie.imdbID) active = true;
-          rows.push(<MovieSmallCard  movie={movie} itemClicked={this.rowClicked} key={movie.imdbID}  active={active} /> );
-        }
-      );
+    var rows = this.props.movies.map(movie => 
+          <MovieSmallCard movie={movie} 
+                          itemClicked={this.rowClicked}
+                          key={movie.imdbID}  
+                          active={this.state.selected === movie.imdbID} />);
 
     return (
       <ListGroup>
