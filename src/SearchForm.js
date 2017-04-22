@@ -33,8 +33,8 @@ class SearchForm extends React.Component {
   }
   
   render() {
-    let history = this.state.searchHistory.map((str,i) => 
-                <MenuItem key={i} eventKey={str} onSelect={this.handleHistoryItem}> {str} </MenuItem> );
+    let history = this.state.searchHistory.map(str => 
+                <MenuItem key={str} eventKey={str} onSelect={this.handleHistoryItem}> {str} </MenuItem> );
 
     return (
       <form onSubmit={this.handleSubmit}>

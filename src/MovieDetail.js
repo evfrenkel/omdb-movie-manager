@@ -6,26 +6,39 @@ class MovieDetail extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { isFavorite: this.props.isFavorite };
+    this.handleToggleFav = this.handleToggleFav.bind(this);
   }
 
+  handleToggleFav(event) {
+    this.props.toggleFavorite(this.props.movie);
+  }
 
   render() {
     if(this.props.movie === undefined) {
       if(this.props.loading) {
-        return (<Panel><ProgressBar active now={100} /> </Panel>);
+        return (<ProgressBar active now={100} />);
       }
       return (<div></div>);
     }
 
+    let button = <Button onClick={this.handleToggleFav} > Add to Favorites </Button>;
+    if(this.props.allFaves.hasOwnProperty(this.props.movie.imdbID))
+      button = <Button onClick={this.handleToggleFav} > Remove From Favorites </Button>;
+
     return (
-      <Panel>
+      <div>
           <Row>
             <Col xs={4}>
               <Thumbnail src={this.props.movie.Poster} alt="Poster" />
             </Col>
             <Col xs={8}>
-              <Table bordered striped>
+              <h2>{this.props.movie.Title}  </h2>
+              <h4> <Label>{this.props.movie.Rated}</Label> {this.props.movie.Year}  </h4>
+              <p className="lead">{this.props.movie.Plot}</p> 
+              {button}
+            </Col>
+          </Row>
+              <Table>
                 <tbody>
                   <tr>
                     <th>Actors</th>
@@ -53,15 +66,7 @@ class MovieDetail extends React.Component {
                   </tr>
                 </tbody>
               </Table>
-            </Col>
-          </Row>
-        <h2>{this.props.movie.Title}  </h2>
-        <h4> <Label>{this.props.movie.Rated}</Label> {this.props.movie.Year}  </h4>
-        <p className="lead">{this.props.movie.Plot}</p> 
-
-        <Button onClick={this.props.toggleFavorite(this.props.movie)}> Add to Favorites </Button>
-
-      </Panel>
+      </div>
     );
   }
 }

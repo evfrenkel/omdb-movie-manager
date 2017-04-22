@@ -23,7 +23,7 @@ class MovieList extends React.Component {
     var rows = this.props.movies.map(movie => 
           <MovieSmallCard movie={movie} 
                           itemClicked={this.rowClicked}
-                          key={movie.imdbID}  
+                          key={movie.imdbID + movie.Title + movie.Year}  
                           active={this.state.selected === movie.imdbID} />);
 
     return (

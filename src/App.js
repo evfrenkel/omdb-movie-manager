@@ -54,16 +54,20 @@ class App extends React.Component {
   }
 
   toggleFavorite(movie) {
-    console.log(movie);
-    this.setState((prevState, props) => {
-      if(prevState.faves.hasOwnProperty(movie.imdbID)) {
-        delete prevState.faves[movie.imdbID];
-      } else {
-        prevState.faves[movie.imdbID] = movie;
-      }
-      console.log(prevState);
-      return ({faves: prevState});
-    });
+    if (!this.state.faves.hasOwnProperty(movie.imdbID)) {
+      let newMovie = {};
+      newMovie[movie.imdbID] = movie;
+
+      let newFaves = Object.assign(this.state.faves, newMovie);
+
+      this.setState( { faves: newFaves } );
+    }
+    else {
+      let newFaves = Object.assign({}, this.state.faves);
+      delete newFaves[movie.imdbID];
+
+      this.setState( { faves: newFaves} );
+    }
   }
     
   render() {
@@ -74,8 +78,7 @@ class App extends React.Component {
       movieList = <MovieList movies={this.state.movies}
                              itemClicked={this.showMovieDetail}
                              selectedMovieID={this.selectedMovieID} />;
-  }
-
+    }
     return (
       <div>
         <Navbar>
@@ -102,6 +105,7 @@ class App extends React.Component {
 
             <Col xs={8}>
               <MovieDetail movie={this.state.selectedMovie} loading={this.state.detailLoading}
+                            allFaves={this.state.faves}
                             toggleFavorite={this.toggleFavorite} />
             </Col>
           </Row>
