@@ -1,22 +1,31 @@
-import React from 'react';
+import React from "react";
 
-import { FormGroup, Radio, FormControl, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap';
+import {
+  FormGroup,
+  Radio,
+  FormControl,
+  ControlLabel,
+  DropdownButton,
+  MenuItem
+} from "react-bootstrap";
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {currentStr: '',
-                  loading: false };
+    this.state = {
+      currentStr: "",
+      loading: false
+    };
 
     this.handleTextInputChange = this.handleTextInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleHistoryItem = this.handleHistoryItem.bind(this);
     this.handleSearchTypeChange = this.handleSearchTypeChange.bind(this);
   }
-  
+
   handleTextInputChange(e) {
-    this.setState({currentStr : e.target.value});
+    this.setState({ currentStr: e.target.value });
   }
 
   handleSearchTypeChange(e) {
@@ -24,7 +33,7 @@ class SearchForm extends React.Component {
   }
 
   handleHistoryItem(eventKey) {
-    this.setState({currentStr: eventKey});
+    this.setState({ currentStr: eventKey });
     this.props.newSearch(eventKey);
   }
 
@@ -32,10 +41,13 @@ class SearchForm extends React.Component {
     e.preventDefault();
     this.props.newSearch(this.state.currentStr);
   }
-  
+
   render() {
-    let history = this.props.searchHistory.map(str => 
-                <MenuItem key={str} eventKey={str} onSelect={this.handleHistoryItem}> {str} </MenuItem> );
+    let history = this.props.searchHistory.map(str => (
+      <MenuItem key={str} eventKey={str} onSelect={this.handleHistoryItem}>
+        {str}
+      </MenuItem>
+    ));
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -46,21 +58,30 @@ class SearchForm extends React.Component {
             value={this.state.currentStr}
             onChange={this.handleTextInputChange}
           />
-          
+
         </FormGroup>
         <FormGroup>
           {history.length > 0 &&
             <DropdownButton bsSize="small" title="Search History" id="history">
-            {history}
+              {history}
             </DropdownButton>}
-            {' '}
-          <Radio name='searchType' value="movie" 
-          checked={this.props.searchType === 'movie'} 
-          onChange={this.handleSearchTypeChange}> Movies </Radio>
-          <Radio name='searchType'
-            checked={this.props.searchType === 'series'} 
-            value="series" 
-            onChange={this.handleSearchTypeChange}> TV Series </Radio>
+          {" "}
+          <Radio
+            name="searchType"
+            value="movie"
+            checked={this.props.searchType === "movie"}
+            onChange={this.handleSearchTypeChange}
+          >
+            Movies
+          </Radio>
+          <Radio
+            name="searchType"
+            checked={this.props.searchType === "series"}
+            value="series"
+            onChange={this.handleSearchTypeChange}
+          >
+            TV Series
+          </Radio>
         </FormGroup>
       </form>
     );

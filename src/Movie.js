@@ -1,6 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { Panel, Button, Thumbnail, Row, Col, ProgressBar } from 'react-bootstrap';
+import {
+  Panel,
+  Button,
+  Thumbnail,
+  Row,
+  Col,
+  ProgressBar
+} from "react-bootstrap";
 
 class Movie extends React.Component {
   constructor(props) {
@@ -14,35 +21,40 @@ class Movie extends React.Component {
   }
 
   render() {
-    if(this.props.loading) {
-      return (<ProgressBar active now={100} />);
-    }
+    if (this.props.loading) return <ProgressBar active now={100} />;
 
-    let button = <Button onClick={this.handleToggleFav} bsStyle="warning"> Add to Favorites </Button>;
-    if(this.props.isFave)
-      button = <Button onClick={this.handleToggleFav} bsStyle="danger"> Remove From Favorites </Button>;
+    let button = (
+      <Button onClick={this.handleToggleFav} bsStyle="warning">
+        Add to Favorites
+      </Button>
+    );
+    if (this.props.isFave)
+      button = (
+        <Button onClick={this.handleToggleFav} bsStyle="danger">
+          Remove From Favorites
+        </Button>
+      );
 
     return (
       <Panel>
-          <Row>
-            <Col sm={12}>
-              {this.props.movie.Poster !== "N/A" &&
+        <Row>
+          <Col sm={12}>
+            {this.props.movie.Poster !== "N/A" &&
               <Thumbnail src={this.props.movie.Poster} alt="Poster" />}
-            </Col>
-            <Col sm={12}>
+          </Col>
+          <Col sm={12}>
 
-              <h4> {this.props.movie.Title}  </h4>
-              <h4> {this.props.movie.Year}  </h4>
-              {button}
-            </Col>
-          </Row>
+            <h4> {this.props.movie.Title} </h4>
+            <h4> {this.props.movie.Year} </h4>
+            {button}
+          </Col>
+        </Row>
       </Panel>
     );
   }
 }
 
 export default Movie;
-
 
 /* 
 Country
