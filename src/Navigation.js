@@ -10,22 +10,24 @@ class Navigation extends React.Component {
 	}
 
 	handleSelect(eventKey, event) {
-
 		this.props.handleChooseView(eventKey);
 	}
 
 	render() {
 		return(
-	        <Navbar>
+	        <Navbar inverse collapseOnSelect staticTop>
 	          <Navbar.Header>
 	            <Navbar.Brand>
-	              Movie Finder
+	              Movie Explorer
 	            </Navbar.Brand>
+	            <Navbar.Toggle />
 	          </Navbar.Header>
-	          <Nav activeKey={this.props.viewNow} onSelect={this.handleSelect} >
+	          <Navbar.Collapse>
+	          <Nav activeKey={this.props.viewNow} onSelect={this.handleSelect} pullRight>
 	            <NavItem eventKey="search"> Search </NavItem>
 	            <NavItem eventKey="faves"> Favorites </NavItem>
 	          </Nav>
+	          </Navbar.Collapse>
 	        </Navbar>
         )
 	}

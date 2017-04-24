@@ -1,93 +1,58 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
 import React from 'react';
 import Navigation from './Navigation';
-import SearchForm from './SearchForm';
-import MovieList from './MovieList';
+import SearchPanel from './SearchPanel';
 import MovieDetail from './MovieDetail';
 import Faves from './Faves';
 
-import { Grid, Col, Row, ProgressBar } from 'react-bootstrap';
-
+import { Grid, Col, Row } from 'react-bootstrap';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { moviesInList: [],
-                   searchHistory: [],
-                   faves: {},
+    this.state = { faves: {},
                    view: 'search',
-                   noResults: false,
-                   listLoading: false,
+                   detailMovie: null,
                    detailLoading: false };
 
-    this.selectedMovieID = null;
     
     this.handleChooseView = this.handleChooseView.bind(this);
-    this.handleNewSearch = this.handleNewSearch.bind(this);
-    this.updateMovies = this.updateMovies.bind(this);
-    this.showMovieDetail = this.showMovieDetail.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
-  }
-  
-  handleNewSearch(str) {
-    this.setState({listLoading: true});
-    fetch('https://www.omdbapi.com/?s=' + str, {})
-    .then(res => res.json().then(this.updateMovies));
+    this.handleNewDetailMovie = this.handleNewDetailMovie.bind(this);
   }
 
-  updateMovies(r) {
-    if(r.Response !== "False") {
-      this.setState({noResults: false, moviesInList: r.Search, listLoading: false});
-    }
-    else {
-      this.setState({noResults: true, moviesInList: [], listLoading: false});
-    }
-  }
-
-  showMovieDetail(imdbID) {
-    this.selectedMovieID = imdbID;
-    this.setState({selectedMovie: undefined, detailLoading: true});
-    fetch('https://www.omdbapi.com/?i=' + imdbID, {}).then(
-      res => {
-        res.json().then(result => {
-            this.setState({selectedMovie: result, detailLoading: false});
-          });},
-      error => 
-        { console.log(error.message) });
+  handleNewDetailMovie(movie) {
+    this.setState({detailMovie: movie});
   }
 
   toggleFavorite(movie) {
     if (!this.state.faves.hasOwnProperty(movie.imdbID)) {
       let newMovie = {};
       newMovie[movie.imdbID] = movie;
-
-      var newFaves = Object.assign(this.state.faves, newMovie);
-
-      this.setState((prevState, props) => ({ faves: newFaves }));
+      let newFaves = Object.assign(this.state.faves, newMovie);
+      this.setState({ faves: newFaves });
     }
     else {
       let newFaves = Object.assign({}, this.state.faves);
       delete newFaves[movie.imdbID];
-
       this.setState( { faves: newFaves} );
     }
   }
   
-  handleChooseView(newView) {
-    this.setState({view : newView});
+  handleChooseView(newViewIdentifier) {
+    this.setState({view : newViewIdentifier});
   }
-  render() {
 
+  render() {
     if(this.state.view === "faves") {
       return (
-        <div>
-        <Navigation handleChooseView={this.handleChooseView} viewNow={this.state.view}/>
-        <Grid>
-        <Faves allFaves={this.state.faves}  toggleFavorite={this.toggleFavorite}/>
-        </Grid>
-        </div>
+          <div>
+            <Navigation handleChooseView={this.handleChooseView} viewNow={this.state.view}/>
+            <Grid>
+              <Faves allFaves={this.state.faves} toggleFavorite={this.toggleFavorite}/>
+            </Grid>
+          </div>
         )
     }
 
@@ -97,20 +62,13 @@ class App extends React.Component {
         <Grid>
           <Row>
             <Col sm={8} smPush={4} xs={10}>
-            { this.selectedMovieID !== null &&
-              <MovieDetail movie={this.state.selectedMovie} loading={this.state.detailLoading}
-                            isFave={this.state.faves.hasOwnProperty(this.selectedMovieID)}
+            { this.state.detailMovie !== null &&
+              <MovieDetail movie={this.state.detailMovie} loading={this.state.detailLoading}
+                            isFave={this.state.faves.hasOwnProperty(this.state.detailMovie.imdbID)}
                             toggleFavorite={this.toggleFavorite} />}
             </Col>
             <Col sm={4} smPull={8} xs={12}>
-              <SearchForm newSearch={this.handleNewSearch} searchHistory={this.state.searchHistory}/>
-              {this.state.listLoading ? <ProgressBar active now={100} /> : 
-                                        <MovieList movies={this.state.moviesInList}
-                                               itemClicked={this.showMovieDetail}
-                                               selectedMovieID={this.selectedMovieID} />}
-              {this.state.noResults &&
-                <p>No results</p>
-              }
+              <SearchPanel handleSelectMovie={this.handleNewDetailMovie}/>
             </Col>
           </Row>
         </Grid>

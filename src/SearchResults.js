@@ -4,7 +4,7 @@ import MovieSmallCard from './MovieSmallCard';
 
 import { ListGroup } from 'react-bootstrap';
 
-class MovieList extends React.Component {
+class SearchResults extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,13 +14,11 @@ class MovieList extends React.Component {
 
   rowClicked(imdbID) {
     this.props.itemClicked(imdbID);
-
     this.setState({selected: imdbID});
   }
 
   render() {
-
-    var rows = this.props.movies.map(movie => 
+    let movies = this.props.movies.map(movie => 
           <MovieSmallCard movie={movie} 
                           itemClicked={this.rowClicked}
                           key={movie.imdbID + movie.Title + movie.Year}  
@@ -28,10 +26,10 @@ class MovieList extends React.Component {
 
     return (
       <ListGroup>
-        {rows}
+        {movies}
       </ListGroup>
     );
   }
 }
 
-export default MovieList;
+export default SearchResults;

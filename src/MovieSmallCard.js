@@ -23,9 +23,3 @@ class MovieSmallCard extends React.Component {
 }
 
 export default MovieSmallCard;
-
-/*        <div>
-          {this.props.movie.Poster !== "N/A" && 
-            <img src={this.props.movie.Poster} alt="Poster" />
-          }
-        </div> */

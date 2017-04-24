@@ -31,8 +31,8 @@ class MovieDetail extends React.Component {
             </Col>
             <Col xs={12} sm={7} md={8}>
               {button}
-              <h2>{this.props.movie.Title}  </h2>
-              <h4> <Label>{this.props.movie.Rated}</Label> {this.props.movie.Year}  </h4>
+              <h2> {this.props.movie.Title} </h2>
+              <h4> <Label>{this.props.movie.Rated}</Label> {this.props.movie.Year} </h4>
               <p className="lead">{this.props.movie.Plot}</p> 
             </Col>
           </Row>
@@ -81,15 +81,12 @@ Country
 
 "Metascore":"73",
 "imdbRating":"7.1",
-"imdbVotes":"280,472",
-"imdbID":"tt0317219",
 
 "Type":"movie",
 
 "BoxOffice":"$244,052,771.00"
 
-"Website":"http://www.carsthemovie.com"
+"Website"
 
-"Response":"True"}
-
+"Response":"True"
 */
