@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Panel, Label, Button, Thumbnail, Row, Col, Table, ProgressBar } from 'react-bootstrap';
+import { Label, Button, Thumbnail, Row, Col, Table, ProgressBar } from 'react-bootstrap';
 
 class MovieDetail extends React.Component {
   constructor(props) {
@@ -9,33 +9,31 @@ class MovieDetail extends React.Component {
     this.handleToggleFav = this.handleToggleFav.bind(this);
   }
 
-  handleToggleFav(event) {
+  handleToggleFav() {
     this.props.toggleFavorite(this.props.movie);
   }
 
   render() {
-    if(this.props.movie === undefined) {
-      if(this.props.loading) {
-        return (<ProgressBar active now={100} />);
-      }
-      return (<div></div>);
+    if(this.props.loading) {
+      return (<ProgressBar active now={100} />);
     }
 
-    let button = <Button onClick={this.handleToggleFav} > Add to Favorites </Button>;
-    if(this.props.allFaves.hasOwnProperty(this.props.movie.imdbID))
-      button = <Button onClick={this.handleToggleFav} > Remove From Favorites </Button>;
+    let button = <Button onClick={this.handleToggleFav} bsStyle="warning"> Add to Favorites </Button>;
+    if(this.props.isFave)
+      button = <Button onClick={this.handleToggleFav} bsStyle="danger"> Remove From Favorites </Button>;
 
     return (
       <div>
           <Row>
-            <Col xs={4}>
-              <Thumbnail src={this.props.movie.Poster} alt="Poster" />
+            <Col xs={12} sm={5} md={4}>
+              {this.props.movie.Poster !== "N/A" &&
+              <Thumbnail src={this.props.movie.Poster} alt="Poster" />}
             </Col>
-            <Col xs={8}>
+            <Col xs={12} sm={7} md={8}>
+              {button}
               <h2>{this.props.movie.Title}  </h2>
               <h4> <Label>{this.props.movie.Rated}</Label> {this.props.movie.Year}  </h4>
               <p className="lead">{this.props.movie.Plot}</p> 
-              {button}
             </Col>
           </Row>
               <Table>
