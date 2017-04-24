@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Label, Button, Thumbnail, Row, Col, Table, ProgressBar } from 'react-bootstrap';
+import { Label, Button, Image, Row, Col, Table, ProgressBar } from 'react-bootstrap';
 
 class MovieDetail extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class MovieDetail extends React.Component {
           <Row>
             <Col xs={12} sm={5} md={4}>
               {this.props.movie.Poster !== "N/A" &&
-              <Thumbnail src={this.props.movie.Poster} alt="Poster" />}
+              <p><Image src={this.props.movie.Poster} alt="Poster" responsive/></p>}
             </Col>
             <Col xs={12} sm={7} md={8}>
               {button}
@@ -36,34 +36,34 @@ class MovieDetail extends React.Component {
               <p className="lead">{this.props.movie.Plot}</p> 
             </Col>
           </Row>
-              <Table>
-                <tbody>
-                  <tr>
-                    <th>Actors</th>
-                    <td>{this.props.movie.Actors}</td>
-                  </tr>
-                  <tr>
-                    <th>Director</th>
-                    <td>{this.props.movie.Director}</td>
-                  </tr>
-                  <tr>
-                    <th>Writer</th>
-                    <td>{this.props.movie.Writer}</td>
-                  </tr>
-                  <tr>
-                    <th>Genre</th>
-                    <td>{this.props.movie.Genre}</td>
-                  </tr>
-                  <tr>
-                    <th>Awards</th>
-                    <td>{this.props.movie.Awards}</td>
-                  </tr>
-                  <tr>
-                    <th>Runtime</th>
-                    <td>{this.props.movie.Runtime}</td>
-                  </tr>
-                </tbody>
-              </Table>
+          <Table>
+            <tbody>
+              <tr>
+                <th>Actors</th>
+                <td>{this.props.movie.Actors}</td>
+              </tr>
+              <tr>
+                <th>Director</th>
+                <td>{this.props.movie.Director}</td>
+              </tr>
+              <tr>
+                <th>Writer</th>
+                <td>{this.props.movie.Writer}</td>
+              </tr>
+              <tr>
+                <th>Genre</th>
+                <td>{this.props.movie.Genre}</td>
+              </tr>
+              <tr>
+                <th>Awards</th>
+                <td>{this.props.movie.Awards}</td>
+              </tr>
+              <tr>
+                <th>Runtime</th>
+                <td>{this.props.movie.Runtime}</td>
+              </tr>
+            </tbody>
+          </Table>
       </div>
     );
   }

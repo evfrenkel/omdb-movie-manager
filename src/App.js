@@ -14,7 +14,8 @@ import { Grid, Col, Row, ProgressBar } from 'react-bootstrap';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { movies: [],
+    this.state = { moviesInList: [],
+                   searchHistory: [],
                    faves: {},
                    view: 'search',
                    noResults: false,
@@ -38,10 +39,10 @@ class App extends React.Component {
 
   updateMovies(r) {
     if(r.Response !== "False") {
-      this.setState({noResults: false, movies: r.Search, listLoading: false});
+      this.setState({noResults: false, moviesInList: r.Search, listLoading: false});
     }
     else {
-      this.setState({noResults: true, movies: [], listLoading: false});
+      this.setState({noResults: true, moviesInList: [], listLoading: false});
     }
   }
 
@@ -95,22 +96,21 @@ class App extends React.Component {
         <Navigation handleChooseView={this.handleChooseView} viewNow={this.state.view}/>
         <Grid>
           <Row>
-            <Col xs={4}>
-              <SearchForm newSearch={this.handleNewSearch} />
+            <Col sm={8} smPush={4} xs={10}>
+            { this.selectedMovieID !== null &&
+              <MovieDetail movie={this.state.selectedMovie} loading={this.state.detailLoading}
+                            isFave={this.state.faves.hasOwnProperty(this.selectedMovieID)}
+                            toggleFavorite={this.toggleFavorite} />}
+            </Col>
+            <Col sm={4} smPull={8} xs={12}>
+              <SearchForm newSearch={this.handleNewSearch} searchHistory={this.state.searchHistory}/>
               {this.state.listLoading ? <ProgressBar active now={100} /> : 
-                                        <MovieList movies={this.state.movies}
+                                        <MovieList movies={this.state.moviesInList}
                                                itemClicked={this.showMovieDetail}
                                                selectedMovieID={this.selectedMovieID} />}
               {this.state.noResults &&
                 <p>No results</p>
               }
-            </Col>
-
-            <Col xs={8}>
-            { this.selectedMovieID !== null &&
-              <MovieDetail movie={this.state.selectedMovie} loading={this.state.detailLoading}
-                            isFave={this.state.faves.hasOwnProperty(this.selectedMovieID)}
-                            toggleFavorite={this.toggleFavorite} />}
             </Col>
           </Row>
         </Grid>

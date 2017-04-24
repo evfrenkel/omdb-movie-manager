@@ -33,22 +33,26 @@ class SearchForm extends React.Component {
   }
   
   render() {
+
     let history = this.state.searchHistory.map(str => 
                 <MenuItem key={str} eventKey={str} onSelect={this.handleHistoryItem}> {str} </MenuItem> );
 
     return (
       <form onSubmit={this.handleSubmit}>
         <FormGroup controlId="title">
-          <ControlLabel>Title</ControlLabel>  
+          <ControlLabel>Search by Title</ControlLabel>
+          <p>  
           <FormControl
             type="text"
             value={this.state.currentStr}
             onChange={this.handleTextInputChange}
           />
+          </p>
+          { this.state.searchHistory.length > 0 &&
+            <DropdownButton bsSize="small" title="Search History" id="history">
+            {history}
+            </DropdownButton>}
 
-          <DropdownButton bsSize="small" title="History" id="history">
-          {history}
-          </DropdownButton>
         </FormGroup>
       </form>
     );
