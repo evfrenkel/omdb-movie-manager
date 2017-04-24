@@ -20,8 +20,6 @@ class SearchForm extends React.Component {
   }
 
   handleSearchTypeChange(e) {
-    console.log('SearchForm::handleSearchTypeChange::' + e.currentTarget.value);
-    console.log('SearchForm::handleSearchTypeChange::' + this.state.currentStr);
     this.props.searchTypeChanged(e.currentTarget.value, this.state.currentStr);
   }
 
@@ -32,7 +30,6 @@ class SearchForm extends React.Component {
 
   handleSubmit(e, i) {
     e.preventDefault();
-
     this.props.newSearch(this.state.currentStr);
   }
   

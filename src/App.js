@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { faves: {},
+                   searchHistory: [],
                    view: 'search',
                    detailMovie: null,
                    detailLoading: false };
@@ -20,6 +21,13 @@ class App extends React.Component {
     this.handleChooseView = this.handleChooseView.bind(this);
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.handleNewDetailMovie = this.handleNewDetailMovie.bind(this);
+    this.appendSearchHistory = this.appendSearchHistory.bind(this);
+  }
+
+  appendSearchHistory(search) {
+    let formal = search.trim();
+    if(this.state.searchHistory.indexOf(formal) === -1 && formal.length > 0)
+      this.setState({searchHistory: [formal].concat(this.state.searchHistory) });
   }
 
   handleNewDetailMovie(movie) {
@@ -41,7 +49,8 @@ class App extends React.Component {
   }
   
   handleChooseView(newViewIdentifier) {
-    this.setState({view : newViewIdentifier});
+    this.setState({view : newViewIdentifier,
+                    detailMovie: null});
   }
 
   render() {
@@ -68,7 +77,9 @@ class App extends React.Component {
                             toggleFavorite={this.toggleFavorite} />}
             </Col>
             <Col sm={4} smPull={8} xs={12}>
-              <SearchPanel handleSelectMovie={this.handleNewDetailMovie}/>
+              <SearchPanel handleSelectMovie={this.handleNewDetailMovie}
+                            handleNewSearch={this.appendSearchHistory}
+                            searchHistory={this.state.searchHistory} />
             </Col>
           </Row>
         </Grid>

@@ -6,15 +6,13 @@ import { ProgressBar } from 'react-bootstrap';
 
 
 class SearchPanel extends React.Component {
-  constructor(props) {
+	constructor(props) {
     super(props);
     this.state = { searchResults: [],
-                   searchHistory: [],
                    searchType: 'movie',
                    noResults: false,
                    listLoading: false};
 
-    this.searchTerm = '';
     this.selectedMovieID = null;
     
     this.handleNewSearch = this.handleNewSearch.bind(this);
@@ -24,12 +22,11 @@ class SearchPanel extends React.Component {
 	}
 
 	searchTypeChanged(type, search) {
-		console.log('searchTypeChanged::' + search);
-		this.setState(() => ({searchType: type}), this.handleNewSearch(search));
+		this.setState({searchType: type}, () => this.handleNewSearch(search));
 	}
 
 	handleSelect(imdbID) {
-		this.selectedMovieID = imdbID; 
+	this.selectedMovieID = imdbID;
     fetch('https://www.omdbapi.com/?i=' + imdbID, {}).then(
       res => {
         res.json().then(result => {
@@ -40,9 +37,7 @@ class SearchPanel extends React.Component {
 	}
 
 	handleNewSearch(str) {
-		// add to search history
-		if(this.state.searchHistory.indexOf(str) === -1)
-		this.setState({searchHistory: [str].concat(this.state.searchHistory) });
+		this.props.handleNewSearch(str);
 		// loading animation state
 		this.setState({listLoading: true});
 		// load search
@@ -62,10 +57,10 @@ class SearchPanel extends React.Component {
 	render() {
 		return (
 			<div>
-						<SearchForm newSearch={this.handleNewSearch} 
+			<SearchForm newSearch={this.handleNewSearch} 
 	          searchTypeChanged={this.searchTypeChanged}
 	          searchType={this.state.searchType}
-	          searchHistory={this.state.searchHistory}/>
+	          searchHistory={this.props.searchHistory}/>
 		      	
 		      	{this.state.listLoading ? <ProgressBar active now={100} /> : 
 	                            <SearchResults movies={this.state.searchResults}
