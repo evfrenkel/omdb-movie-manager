@@ -65,7 +65,7 @@ class SearchForm extends React.Component {
             <DropdownButton bsSize="small" title="Search History" id="history">
               {history}
             </DropdownButton>}
-          {" "}
+          {/*{" "}
           <Radio
             name="searchType"
             value="movie"
@@ -76,12 +76,12 @@ class SearchForm extends React.Component {
           </Radio>
           <Radio
             name="searchType"
-            checked={this.props.searchType === "series"}
-            value="series"
+            checked={this.props.searchType === "tv"}
+            value="tv"
             onChange={this.handleSearchTypeChange}
           >
             TV Series
-          </Radio>
+          </Radio>*/}
         </FormGroup>
       </form>
     );

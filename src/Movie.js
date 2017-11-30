@@ -39,13 +39,13 @@ class Movie extends React.Component {
       <Panel>
         <Row>
           <Col sm={12}>
-            {this.props.movie.Poster !== "N/A" &&
-              <Thumbnail src={this.props.movie.Poster} alt="Poster" />}
+            {this.props.movie.poster_path !== null &&
+              <Thumbnail src={"https://image.tmdb.org/t/p/w500/" + this.props.movie.poster_path} alt="Poster" />}
           </Col>
           <Col sm={12}>
 
-            <h4> {this.props.movie.Title} </h4>
-            <h4> {this.props.movie.Year} </h4>
+            <h4> {this.props.movie.title} </h4>
+            <h4> {this.props.movie.release_date} </h4>
             {button}
           </Col>
         </Row>
@@ -57,23 +57,6 @@ class Movie extends React.Component {
 export default Movie;
 
 /* 
-Country
 
-"Ratings":[{"Source":"Internet Movie Database","Value":"7.1/10"},
-{"Source":"Rotten Tomatoes","Value":"74%"},
-{"Source":"Metacritic","Value":"73/100"}],
-
-"Metascore":"73",
-"imdbRating":"7.1",
-"imdbVotes":"280,472",
-"imdbID":"tt0317219",
-
-"Type":"movie",
-
-"BoxOffice":"$244,052,771.00"
-
-"Website":"http://www.carsthemovie.com"
-
-"Response":"True"}
 
 */

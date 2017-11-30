@@ -42,49 +42,29 @@ class MovieDetail extends React.Component {
       <div>
         <Row>
           <Col xs={12} sm={5} md={4}>
-            {this.props.movie.Poster !== "N/A" &&
+            {this.props.movie.poster_path !== null &&
               <p>
-                <Image src={this.props.movie.Poster} alt="Poster" responsive />
+                <Image src={"https://image.tmdb.org/t/p/w500/" + this.props.movie.poster_path} alt="Poster" responsive />
               </p>}
           </Col>
           <Col xs={12} sm={7} md={8}>
             {button}
-            <h2> {this.props.movie.Title} </h2>
+            <h2> {this.props.movie.title} </h2>
             <h4>
               {" "}
-              <Label>{this.props.movie.Rated}</Label>
+              <Label>{this.props.movie.vote_average}</Label>
               {" "}
-              {this.props.movie.Year}
+              {this.props.movie.release_date}
               {" "}
             </h4>
-            <p className="lead">{this.props.movie.Plot}</p>
+            <p className="lead">{this.props.movie.overview}</p>
           </Col>
         </Row>
         <Table>
           <tbody>
             <tr>
-              <th>Actors</th>
-              <td>{this.props.movie.Actors}</td>
-            </tr>
-            <tr>
-              <th>Director</th>
-              <td>{this.props.movie.Director}</td>
-            </tr>
-            <tr>
-              <th>Writer</th>
-              <td>{this.props.movie.Writer}</td>
-            </tr>
-            <tr>
-              <th>Genre</th>
-              <td>{this.props.movie.Genre}</td>
-            </tr>
-            <tr>
-              <th>Awards</th>
-              <td>{this.props.movie.Awards}</td>
-            </tr>
-            <tr>
               <th>Runtime</th>
-              <td>{this.props.movie.Runtime}</td>
+              <td>{this.props.movie.runtime}</td>
             </tr>
           </tbody>
         </Table>
@@ -96,20 +76,5 @@ class MovieDetail extends React.Component {
 export default MovieDetail;
 
 /* 
-Country
 
-"Ratings":[{"Source":"Internet Movie Database","Value":"7.1/10"},
-{"Source":"Rotten Tomatoes","Value":"74%"},
-{"Source":"Metacritic","Value":"73/100"}],
-
-"Metascore":"73",
-"imdbRating":"7.1",
-
-"Type":"movie",
-
-"BoxOffice":"$244,052,771.00"
-
-"Website"
-
-"Response":"True"
 */

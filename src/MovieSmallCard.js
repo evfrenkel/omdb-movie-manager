@@ -10,7 +10,7 @@ class MovieSmallCard extends React.Component {
 	}
 
 	handleClick() {
-		this.props.itemClicked(this.props.movie.imdbID);
+		this.props.itemClicked(this.props.movie.id);
 	}
 
 	render() {
@@ -19,8 +19,8 @@ class MovieSmallCard extends React.Component {
 				onClick={this.handleClick}
 				active={this.props.active}
 			>
-				<strong> {this.props.movie.Title} </strong>
-				{' (' + this.props.movie.Year + ')'}
+				<strong> {this.props.movie.title} </strong>
+				{ '(' + this.props.movie.release_date + ')'}
 			</ListGroupItem>
 		);
 	}

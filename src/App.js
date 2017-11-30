@@ -38,14 +38,14 @@ class App extends React.Component {
   }
 
   toggleFavorite(movie) {
-    if (!this.state.faves.hasOwnProperty(movie.imdbID)) {
+    if (!this.state.faves.hasOwnProperty(movie.id)) {
       let newMovie = {};
-      newMovie[movie.imdbID] = movie;
+      newMovie[movie.id] = movie;
       let newFaves = Object.assign(this.state.faves, newMovie);
       this.setState({ faves: newFaves });
     } else {
       let newFaves = Object.assign({}, this.state.faves);
-      delete newFaves[movie.imdbID];
+      delete newFaves[movie.id];
       this.setState({ faves: newFaves });
     }
   }
@@ -89,7 +89,7 @@ class App extends React.Component {
                   movie={this.state.detailMovie}
                   loading={this.state.detailLoading}
                   isFave={this.state.faves.hasOwnProperty(
-                    this.state.detailMovie.imdbID
+                    this.state.detailMovie.id
                   )}
                   toggleFavorite={this.toggleFavorite}
                 />}

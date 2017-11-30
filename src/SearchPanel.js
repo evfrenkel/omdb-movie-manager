@@ -9,7 +9,7 @@ class SearchPanel extends React.Component {
 		super(props);
 		this.state = {
 			searchResults: [],
-			searchType: "movie",
+			// searchType: "movie",
 			noResults: false,
 			listLoading: false
 		};
@@ -18,17 +18,18 @@ class SearchPanel extends React.Component {
 
 		this.handleNewSearch = this.handleNewSearch.bind(this);
 		this.updateMovies = this.updateMovies.bind(this);
-		this.searchTypeChanged = this.searchTypeChanged.bind(this);
+		// this.searchTypeChanged = this.searchTypeChanged.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
 	}
 
-	searchTypeChanged(type, search) {
-		this.setState({ searchType: type }, () => this.handleNewSearch(search));
-	}
+	// searchTypeChanged(type, search) {
+	// 	this.setState({ searchType: type }, () => this.handleNewSearch(search));
+	// }
 
-	handleSelect(imdbID) {
-		this.selectedMovieID = imdbID;
-		fetch("https://www.omdbapi.com/?i=" + imdbID, {}).then(
+	handleSelect(id) {
+		this.selectedMovieID = id;
+		fetch("https://api.themoviedb.org/3/movie/" + id + 
+			"?api_key=3058e041b6c8b665ff6e7c489a63e9d8&language=en-US", {}).then(
 			res => {
 				res.json().then(result => {
 					this.props.handleSelectMovie(result);
@@ -46,7 +47,8 @@ class SearchPanel extends React.Component {
 		this.setState({ listLoading: true });
 		// load search
 		fetch(
-			"https://www.omdbapi.com/?s=" + str + "&type=" + this.state.searchType,
+			"https://api.themoviedb.org/3/search/movie?query=" + str + 
+			"&api_key=3058e041b6c8b665ff6e7c489a63e9d8&language=en-US&page=1&include_adult=false",
 			{}
 		).then(res => res.json().then(this.updateMovies));
 	}
@@ -55,7 +57,7 @@ class SearchPanel extends React.Component {
 		if (r.Response !== "False") {
 			this.setState({
 				noResults: false,
-				searchResults: r.Search,
+				searchResults: r.results,
 				listLoading: false
 			});
 		} else {

@@ -12,9 +12,9 @@ class SearchResults extends React.Component {
     this.rowClicked = this.rowClicked.bind(this);
   }
 
-  rowClicked(imdbID) {
-    this.props.itemClicked(imdbID);
-    this.setState({ selected: imdbID });
+  rowClicked(movieID) {
+    this.props.itemClicked(movieID);
+    this.setState({ selected: movieID });
   }
 
   render() {
@@ -22,8 +22,8 @@ class SearchResults extends React.Component {
       <MovieSmallCard
         movie={movie}
         itemClicked={this.rowClicked}
-        key={movie.imdbID + movie.Title + movie.Year}
-        active={this.state.selected === movie.imdbID}
+        key={movie.id}
+        active={this.state.selected === movie.id}
       />
     ));
 
