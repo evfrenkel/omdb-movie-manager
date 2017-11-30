@@ -5,7 +5,7 @@ Changed to use the api from [themoviedb.org](themoviedb.org)
 ### Instructions to develop
 1. type `npm install`
 2. view and develop with `npm start`
-3. publish github pages with `npm run deploy`
+3. publish github pages with `yarn deploy`
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
