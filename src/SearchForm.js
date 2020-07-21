@@ -4,9 +4,9 @@ import {
   FormGroup,
   Radio,
   FormControl,
-  ControlLabel,
+  FormLabel,
   DropdownButton,
-  MenuItem
+  Dropdown
 } from "react-bootstrap";
 
 class SearchForm extends React.Component {
@@ -44,15 +44,15 @@ class SearchForm extends React.Component {
 
   render() {
     let history = this.props.searchHistory.map(str => (
-      <MenuItem key={str} eventKey={str} onSelect={this.handleHistoryItem}>
+      <Dropdown.Item key={str} eventKey={str} onSelect={this.handleHistoryItem}>
         {str}
-      </MenuItem>
+      </Dropdown.Item>
     ));
 
     return (
       <form onSubmit={this.handleSubmit}>
         <FormGroup controlId="title">
-          <ControlLabel>Search by Title</ControlLabel>
+          <FormLabel>Search by Title</FormLabel>
           <FormControl
             type="text"
             value={this.state.currentStr}

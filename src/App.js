@@ -6,7 +6,7 @@ import SearchPanel from "./SearchPanel";
 import MovieDetail from "./MovieDetail";
 import Faves from "./Faves";
 
-import { Grid, Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 
 class App extends React.Component {
   constructor(props) {
@@ -65,12 +65,12 @@ class App extends React.Component {
             handleChooseView={this.handleChooseView}
             viewNow={this.state.view}
           />
-          <Grid>
+          <Container>
             <Faves
               allFaves={this.state.faves}
               toggleFavorite={this.toggleFavorite}
             />
-          </Grid>
+          </Container>
         </div>
       );
     }
@@ -81,7 +81,7 @@ class App extends React.Component {
           handleChooseView={this.handleChooseView}
           viewNow={this.state.view}
         />
-        <Grid>
+        <Container>
           <Row>
             <Col sm={8} smPush={4} xs={10}>
               {this.state.detailMovie !== null &&
@@ -102,7 +102,7 @@ class App extends React.Component {
               />
             </Col>
           </Row>
-        </Grid>
+        </Container>
       </div>
     );
   }

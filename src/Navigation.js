@@ -16,12 +16,10 @@ class Navigation extends React.Component {
 	render() {
 		return (
 			<Navbar inverse collapseOnSelect staticTop>
-				<Navbar.Header>
 					<Navbar.Brand>
 						Movie Explorer
 					</Navbar.Brand>
 					<Navbar.Toggle />
-				</Navbar.Header>
 				<Navbar.Collapse>
 					<Nav
 						activeKey={this.props.viewNow}

@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  Label,
+  Badge,
   Button,
   Image,
   Row,
@@ -52,7 +52,7 @@ class MovieDetail extends React.Component {
             <h2> {this.props.movie.title} </h2>
             <h4>
               {" "}
-              <Label>{this.props.movie.vote_average}</Label>
+              <Badge>{this.props.movie.vote_average}</Badge>
               {" "}
               {this.props.movie.release_date}
               {" "}

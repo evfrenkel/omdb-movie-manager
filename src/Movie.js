@@ -1,9 +1,8 @@
 import React from "react";
 
 import {
-  Panel,
+  Card,
   Button,
-  Thumbnail,
   Row,
   Col,
   ProgressBar
@@ -36,11 +35,11 @@ class Movie extends React.Component {
       );
 
     return (
-      <Panel>
+      <Card>
         <Row>
           <Col sm={12}>
             {this.props.movie.poster_path !== null &&
-              <Thumbnail src={"https://image.tmdb.org/t/p/w500/" + this.props.movie.poster_path} alt="Poster" />}
+              <img src={"https://image.tmdb.org/t/p/w500/" + this.props.movie.poster_path} alt="Poster" />}
           </Col>
           <Col sm={12}>
 
@@ -49,7 +48,7 @@ class Movie extends React.Component {
             {button}
           </Col>
         </Row>
-      </Panel>
+      </Card>
     );
   }
 }
