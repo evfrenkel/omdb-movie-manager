@@ -1,38 +1,40 @@
 import React from "react";
 
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 class Navigation extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.handleSelect = this.handleSelect.bind(this);
-	}
+    this.handleSelect = this.handleSelect.bind(this);
+  }
 
-	handleSelect(eventKey, event) {
-		this.props.handleChooseView(eventKey);
-	}
+  handleSelect(eventKey, event) {
+    this.props.handleChooseView(eventKey);
+  }
 
-	render() {
-		return (
-			<Navbar inverse collapseOnSelect staticTop>
-					<Navbar.Brand>
-						Movie Explorer
-					</Navbar.Brand>
-					<Navbar.Toggle />
-				<Navbar.Collapse>
-					<Nav
-						activeKey={this.props.viewNow}
-						onSelect={this.handleSelect}
-						pullRight
-					>
-						<NavItem eventKey="search"> Search </NavItem>
-						<NavItem eventKey="faves"> Favorites </NavItem>
-					</Nav>
-				</Navbar.Collapse>
-			</Navbar>
-		);
-	}
+  render() {
+    return (
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>Movie Explorer</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Nav
+            variant="pills"
+            activeKey={this.props.viewNow}
+            onSelect={this.handleSelect}
+          >
+            <Nav.Item>
+              <Nav.Link eventKey="search"> Search </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="faves"> Favorites </Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
 }
 
 export default Navigation;
