@@ -7,7 +7,8 @@ import {
   Row,
   Col,
   Table,
-  ProgressBar
+  ProgressBar,
+  Container,
 } from "react-bootstrap";
 
 class MovieDetail extends React.Component {
@@ -39,27 +40,33 @@ class MovieDetail extends React.Component {
       );
 
     return (
-      <div>
-        <Row>
-          <Col xs={12} sm={5} md={4}>
-            {this.props.movie.poster_path !== null &&
-              <p>
-                <Image src={"https://image.tmdb.org/t/p/w500/" + this.props.movie.poster_path} alt="Poster" responsive />
-              </p>}
-          </Col>
-          <Col xs={12} sm={7} md={8}>
-            {button}
-            <h2> {this.props.movie.title} </h2>
-            <h4>
-              {" "}
-              <Badge>{this.props.movie.vote_average}</Badge>
-              {" "}
-              {this.props.movie.release_date}
-              {" "}
-            </h4>
-            <p className="lead">{this.props.movie.overview}</p>
-          </Col>
-        </Row>
+      <>
+        <Container fluid>
+          <Row>
+            <Col xs={4}>
+              {this.props.movie.poster_path !== null && (
+                  <Image
+                    src={
+                      "https://image.tmdb.org/t/p/w500/" +
+                      this.props.movie.poster_path
+                    }
+                    alt="Poster"
+                    fluid
+                  />
+              )}
+            </Col>
+            <Col>
+              {button}
+              <h2> {this.props.movie.title} </h2>
+              <h4>
+                {" "}
+                <Badge>{this.props.movie.vote_average}</Badge>{" "}
+                {this.props.movie.release_date}{" "}
+              </h4>
+              <p className="lead">{this.props.movie.overview}</p>
+            </Col>
+          </Row>
+        </Container>
         <Table>
           <tbody>
             <tr>
@@ -68,7 +75,7 @@ class MovieDetail extends React.Component {
             </tr>
           </tbody>
         </Table>
-      </div>
+      </>
     );
   }
 }

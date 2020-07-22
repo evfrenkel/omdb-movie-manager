@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import React from "react";
 import Navigation from "./Navigation";
@@ -16,7 +16,7 @@ class App extends React.Component {
       searchHistory: [],
       view: "search",
       detailMovie: null,
-      detailLoading: false
+      detailLoading: false,
     };
 
     this.handleChooseView = this.handleChooseView.bind(this);
@@ -29,7 +29,7 @@ class App extends React.Component {
     let formal = search.trim();
     if (this.state.searchHistory.indexOf(formal) === -1 && formal.length > 0)
       this.setState({
-        searchHistory: [formal].concat(this.state.searchHistory)
+        searchHistory: [formal].concat(this.state.searchHistory),
       });
   }
 
@@ -53,7 +53,7 @@ class App extends React.Component {
   handleChooseView(newViewIdentifier) {
     this.setState({
       view: newViewIdentifier,
-      detailMovie: null
+      detailMovie: null,
     });
   }
 
@@ -81,10 +81,17 @@ class App extends React.Component {
           handleChooseView={this.handleChooseView}
           viewNow={this.state.view}
         />
-        <Container>
+        <Container fluid>
           <Row>
-            <Col sm={8} smPush={4} xs={10}>
-              {this.state.detailMovie !== null &&
+            <Col sm={3}>
+              <SearchPanel
+                handleSelectMovie={this.handleNewDetailMovie}
+                handleNewSearch={this.appendSearchHistory}
+                searchHistory={this.state.searchHistory}
+              />
+            </Col>
+            <Col>
+              {this.state.detailMovie !== null && (
                 <MovieDetail
                   movie={this.state.detailMovie}
                   loading={this.state.detailLoading}
@@ -92,14 +99,8 @@ class App extends React.Component {
                     this.state.detailMovie.id
                   )}
                   toggleFavorite={this.toggleFavorite}
-                />}
-            </Col>
-            <Col sm={4} smPull={8} xs={12}>
-              <SearchPanel
-                handleSelectMovie={this.handleNewDetailMovie}
-                handleNewSearch={this.appendSearchHistory}
-                searchHistory={this.state.searchHistory}
-              />
+                />
+              )}
             </Col>
           </Row>
         </Container>
