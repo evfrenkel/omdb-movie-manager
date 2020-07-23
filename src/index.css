@@ -1,3 +1,3 @@
 /* removes chrome's blue outline on clicked button. */
 
-button:focus { outline:0 !important; }
+/* button:focus { outline:0 !important; } */

@@ -15,18 +15,13 @@ class SearchPanel extends React.Component {
 		};
 
 		this.selectedMovieID = null;
-
-		this.handleNewSearch = this.handleNewSearch.bind(this);
-		this.updateMovies = this.updateMovies.bind(this);
-		// this.searchTypeChanged = this.searchTypeChanged.bind(this);
-		this.handleSelect = this.handleSelect.bind(this);
 	}
 
 	// searchTypeChanged(type, search) {
 	// 	this.setState({ searchType: type }, () => this.handleNewSearch(search));
 	// }
 
-	handleSelect(id) {
+	handleSelect = (id) => {
 		this.selectedMovieID = id;
 		fetch("https://api.themoviedb.org/3/movie/" + id + 
 			"?api_key=3058e041b6c8b665ff6e7c489a63e9d8&language=en-US", {}).then(
@@ -41,7 +36,7 @@ class SearchPanel extends React.Component {
 		);
 	}
 
-	handleNewSearch(str) {
+	handleNewSearch = (str) => {
 		this.props.handleNewSearch(str);
 		// loading animation state
 		this.setState({ listLoading: true });
@@ -53,7 +48,7 @@ class SearchPanel extends React.Component {
 		).then(res => res.json().then(this.updateMovies));
 	}
 
-	updateMovies(r) {
+	updateMovies = (r) => {
 		if (r.Response !== "False") {
 			this.setState({
 				noResults: false,

@@ -12,13 +12,7 @@ import {
 } from "react-bootstrap";
 
 class MovieDetail extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleToggleFav = this.handleToggleFav.bind(this);
-  }
-
-  handleToggleFav() {
+  handleToggleFav = () => {
     this.props.toggleFavorite(this.props.movie);
   }
 
@@ -81,7 +75,3 @@ class MovieDetail extends React.Component {
 }
 
 export default MovieDetail;
-
-/* 
-
-*/

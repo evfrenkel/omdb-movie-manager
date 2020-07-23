@@ -3,13 +3,7 @@ import React from "react";
 import { Card, Button, Row, Col, ProgressBar, Image } from "react-bootstrap";
 
 class Movie extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleToggleFav = this.handleToggleFav.bind(this);
-  }
-
-  handleToggleFav() {
+  handleToggleFav = () => {
     this.props.toggleFavorite(this.props.movie);
   }
 

@@ -5,20 +5,15 @@ import MovieSmallCard from "./MovieSmallCard";
 import { ListGroup } from "react-bootstrap";
 
 class SearchResults extends React.Component {
-  constructor(props) {
-    super(props);
+  state = { selected: this.props.selectedMovieID };
 
-    this.state = { selected: this.props.selectedMovieID };
-    this.rowClicked = this.rowClicked.bind(this);
-  }
-
-  rowClicked(movieID) {
+  rowClicked = (movieID) => {
     this.props.itemClicked(movieID);
     this.setState({ selected: movieID });
   }
 
   render() {
-    let movies = this.props.movies.map(movie => (
+    const movies = this.props.movies.map(movie => (
       <MovieSmallCard
         movie={movie}
         itemClicked={this.rowClicked}

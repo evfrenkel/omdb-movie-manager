@@ -3,13 +3,7 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
 class Navigation extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  handleSelect(eventKey, event) {
+  handleSelect = (eventKey, event) => {
     this.props.handleChooseView(eventKey);
   }
 

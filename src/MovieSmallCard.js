@@ -3,13 +3,7 @@ import React from "react";
 import { ListGroupItem } from "react-bootstrap";
 
 class MovieSmallCard extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.handleClick = this.handleClick.bind(this);
-	}
-
-	handleClick() {
+	handleClick = () => {
 		this.props.itemClicked(this.props.movie.id);
 	}
 

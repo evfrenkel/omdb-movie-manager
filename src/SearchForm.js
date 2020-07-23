@@ -10,40 +10,31 @@ import {
 } from "react-bootstrap";
 
 class SearchForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
+    state = {
       currentStr: "",
       loading: false
     };
 
-    this.handleTextInputChange = this.handleTextInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleHistoryItem = this.handleHistoryItem.bind(this);
-    this.handleSearchTypeChange = this.handleSearchTypeChange.bind(this);
-  }
-
-  handleTextInputChange(e) {
+  handleTextInputChange = (e) => {
     this.setState({ currentStr: e.target.value });
   }
 
-  handleSearchTypeChange(e) {
+  handleSearchTypeChange = (e) => {
     this.props.searchTypeChanged(e.currentTarget.value, this.state.currentStr);
   }
 
-  handleHistoryItem(eventKey) {
+  handleHistoryItem = (eventKey) => {
     this.setState({ currentStr: eventKey });
     this.props.newSearch(eventKey);
   }
 
-  handleSubmit(e, i) {
+  handleSubmit = (e, i) => {
     e.preventDefault();
     this.props.newSearch(this.state.currentStr);
   }
 
   render() {
-    let history = this.props.searchHistory.map(str => (
+    const history = this.props.searchHistory.map(str => (
       <Dropdown.Item key={str} eventKey={str} onSelect={this.handleHistoryItem}>
         {str}
       </Dropdown.Item>

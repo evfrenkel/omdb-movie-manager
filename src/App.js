@@ -18,39 +18,34 @@ class App extends React.Component {
       detailMovie: null,
       detailLoading: false,
     };
-
-    this.handleChooseView = this.handleChooseView.bind(this);
-    this.toggleFavorite = this.toggleFavorite.bind(this);
-    this.handleNewDetailMovie = this.handleNewDetailMovie.bind(this);
-    this.appendSearchHistory = this.appendSearchHistory.bind(this);
   }
 
-  appendSearchHistory(search) {
-    let formal = search.trim();
+  appendSearchHistory = (search) => {
+    const formal = search.trim();
     if (this.state.searchHistory.indexOf(formal) === -1 && formal.length > 0)
       this.setState({
         searchHistory: [formal].concat(this.state.searchHistory),
       });
   }
 
-  handleNewDetailMovie(movie) {
+  handleNewDetailMovie = (movie) => {
     this.setState({ detailMovie: movie });
   }
 
-  toggleFavorite(movie) {
+  toggleFavorite = (movie) => {
     if (!this.state.faves.hasOwnProperty(movie.id)) {
-      let newMovie = {};
+      const newMovie = {};
       newMovie[movie.id] = movie;
-      let newFaves = Object.assign(this.state.faves, newMovie);
+      const newFaves = Object.assign(this.state.faves, newMovie);
       this.setState({ faves: newFaves });
     } else {
-      let newFaves = Object.assign({}, this.state.faves);
+      const newFaves = Object.assign({}, this.state.faves);
       delete newFaves[movie.id];
       this.setState({ faves: newFaves });
     }
   }
 
-  handleChooseView(newViewIdentifier) {
+  handleChooseView = (newViewIdentifier) => {
     this.setState({
       view: newViewIdentifier,
       detailMovie: null,
