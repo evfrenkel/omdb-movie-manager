@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
+// import "./index.css";
 import React from "react";
 import Navigation from "./Navigation";
-import SearchPanel from "./SearchPanel";
-import MovieDetail from "./MovieDetail";
-import Faves from "./Faves";
+import FavesView from "./FavesView/FavesView";
+import SearchView from "./SearchView/SearchView";
 
 import { Container, Col, Row } from "react-bootstrap";
 
@@ -20,18 +19,6 @@ class App extends React.Component {
     };
   }
 
-  appendSearchHistory = (search) => {
-    const formal = search.trim();
-    if (this.state.searchHistory.indexOf(formal) === -1 && formal.length > 0)
-      this.setState({
-        searchHistory: [formal].concat(this.state.searchHistory),
-      });
-  }
-
-  handleNewDetailMovie = (movie) => {
-    this.setState({ detailMovie: movie });
-  }
-
   toggleFavorite = (movie) => {
     if (!this.state.faves.hasOwnProperty(movie.id)) {
       const newMovie = {};
@@ -43,63 +30,35 @@ class App extends React.Component {
       delete newFaves[movie.id];
       this.setState({ faves: newFaves });
     }
-  }
+  };
 
   handleChooseView = (newViewIdentifier) => {
     this.setState({
       view: newViewIdentifier,
       detailMovie: null,
     });
-  }
+  };
 
   render() {
-    if (this.state.view === "faves") {
-      return (
-        <div>
-          <Navigation
-            handleChooseView={this.handleChooseView}
-            viewNow={this.state.view}
-          />
-          <Container>
-            <Faves
-              allFaves={this.state.faves}
-              toggleFavorite={this.toggleFavorite}
-            />
-          </Container>
-        </div>
-      );
-    }
-
     return (
-      <div>
+      <>
         <Navigation
           handleChooseView={this.handleChooseView}
           viewNow={this.state.view}
         />
-        <Container fluid>
-          <Row>
-            <Col sm={3}>
-              <SearchPanel
-                handleSelectMovie={this.handleNewDetailMovie}
-                handleNewSearch={this.appendSearchHistory}
-                searchHistory={this.state.searchHistory}
-              />
-            </Col>
-            <Col>
-              {this.state.detailMovie !== null && (
-                <MovieDetail
-                  movie={this.state.detailMovie}
-                  loading={this.state.detailLoading}
-                  isFave={this.state.faves.hasOwnProperty(
-                    this.state.detailMovie.id
-                  )}
-                  toggleFavorite={this.toggleFavorite}
-                />
-              )}
-            </Col>
-          </Row>
-        </Container>
-      </div>
+
+        <SearchView
+          visible={this.state.view === "search"}
+          toggleFavorite={this.toggleFavorite}
+          faves={this.state.faves}
+        />
+
+        <FavesView
+          visible={this.state.view === "faves"}
+          toggleFavorite={this.toggleFavorite}
+          faves={this.state.faves}
+        />
+      </>
     );
   }
 }
