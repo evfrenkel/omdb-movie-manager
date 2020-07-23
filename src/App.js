@@ -5,8 +5,6 @@ import Navigation from "./Navigation";
 import FavesView from "./FavesView/FavesView";
 import SearchView from "./SearchView/SearchView";
 
-import { Container, Col, Row } from "react-bootstrap";
-
 class App extends React.Component {
   constructor(props) {
     super(props);

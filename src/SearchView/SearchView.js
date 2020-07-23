@@ -7,6 +7,7 @@ import { Container, Col, Row } from "react-bootstrap";
 export default class SearchView extends React.Component {
   state = {
     searchHistory: [],
+    searchResults: [],
     detailMovie: null,
     detailLoading: false,
   };
@@ -19,38 +20,44 @@ export default class SearchView extends React.Component {
       });
   };
 
+  handleNewResults = (searchResults) => {
+    this.setState({ searchResults });
+  };
+
   handleNewDetailMovie = (movie) => {
     this.setState({ detailMovie: movie });
   };
 
   render() {
-    if(!this.props.visible) {
+    if (!this.props.visible) {
       return null;
     }
 
     return (
       <Container fluid>
-          <Row>
-            <Col sm={3}>
-              <SearchPanel
-                handleSelectMovie={this.handleNewDetailMovie}
-                handleNewSearch={this.appendSearchHistory}
-                searchHistory={this.state.searchHistory}
+        <Row>
+          <Col sm={3}>
+            <SearchPanel
+              handleSelectMovie={this.handleNewDetailMovie}
+              handleNewSearch={this.appendSearchHistory}
+              handleNewResults={this.handleNewResults}
+              initialResults={this.state.searchResults}
+              searchHistory={this.state.searchHistory}
+            />
+          </Col>
+          <Col>
+            {this.state.detailMovie !== null && (
+              <MovieDetail
+                movie={this.state.detailMovie}
+                loading={this.state.detailLoading}
+                isFave={this.props.faves.hasOwnProperty(
+                  this.state.detailMovie.id
+                )}
+                toggleFavorite={this.props.toggleFavorite}
               />
-            </Col>
-            <Col>
-              {this.state.detailMovie !== null && (
-                <MovieDetail
-                  movie={this.state.detailMovie}
-                  loading={this.state.detailLoading}
-                  isFave={this.props.faves.hasOwnProperty(
-                    this.state.detailMovie.id
-                  )}
-                  toggleFavorite={this.props.toggleFavorite}
-                />
-              )}
-            </Col>
-          </Row>
+            )}
+          </Col>
+        </Row>
       </Container>
     );
   }
