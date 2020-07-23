@@ -28,13 +28,13 @@ class MovieDetail extends React.Component {
     }
 
     let button = (
-      <Button onClick={this.handleToggleFav} bsStyle="warning">
+      <Button onClick={this.handleToggleFav}>
         Add to Favorites
       </Button>
     );
     if (this.props.isFave)
       button = (
-        <Button onClick={this.handleToggleFav} bsStyle="danger">
+        <Button onClick={this.handleToggleFav}>
           Remove From Favorites
         </Button>
       );

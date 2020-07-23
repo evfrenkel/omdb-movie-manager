@@ -62,7 +62,7 @@ class SearchForm extends React.Component {
         </FormGroup>
         <FormGroup>
           {history.length > 0 &&
-            <DropdownButton bsSize="small" title="Search History" id="history">
+            <DropdownButton title="Search History" id="history">
               {history}
             </DropdownButton>}
           {/*{" "}
