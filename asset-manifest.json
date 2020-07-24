@@ -1,11 +1,22 @@
 {
-  "main.css": "static/css/main.4f899c7f.css",
-  "main.css.map": "static/css/main.4f899c7f.css.map",
-  "main.js": "static/js/main.a574e521.js",
-  "main.js.map": "static/js/main.a574e521.js.map",
-  "static/media/glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
-  "static/media/glyphicons-halflings-regular.svg": "static/media/glyphicons-halflings-regular.89889688.svg",
-  "static/media/glyphicons-halflings-regular.ttf": "static/media/glyphicons-halflings-regular.e18bbf61.ttf",
-  "static/media/glyphicons-halflings-regular.woff": "static/media/glyphicons-halflings-regular.fa277232.woff",
-  "static/media/glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2"
+  "files": {
+    "main.js": "/omdb-movie-manager/static/js/main.56dd3453.chunk.js",
+    "main.js.map": "/omdb-movie-manager/static/js/main.56dd3453.chunk.js.map",
+    "runtime-main.js": "/omdb-movie-manager/static/js/runtime-main.7a845def.js",
+    "runtime-main.js.map": "/omdb-movie-manager/static/js/runtime-main.7a845def.js.map",
+    "static/css/2.0e1a4c73.chunk.css": "/omdb-movie-manager/static/css/2.0e1a4c73.chunk.css",
+    "static/js/2.43c17bcb.chunk.js": "/omdb-movie-manager/static/js/2.43c17bcb.chunk.js",
+    "static/js/2.43c17bcb.chunk.js.map": "/omdb-movie-manager/static/js/2.43c17bcb.chunk.js.map",
+    "index.html": "/omdb-movie-manager/index.html",
+    "precache-manifest.dc36fef2f356af76ca7323e74547fd37.js": "/omdb-movie-manager/precache-manifest.dc36fef2f356af76ca7323e74547fd37.js",
+    "service-worker.js": "/omdb-movie-manager/service-worker.js",
+    "static/css/2.0e1a4c73.chunk.css.map": "/omdb-movie-manager/static/css/2.0e1a4c73.chunk.css.map",
+    "static/js/2.43c17bcb.chunk.js.LICENSE.txt": "/omdb-movie-manager/static/js/2.43c17bcb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7a845def.js",
+    "static/css/2.0e1a4c73.chunk.css",
+    "static/js/2.43c17bcb.chunk.js",
+    "static/js/main.56dd3453.chunk.js"
+  ]
 }
