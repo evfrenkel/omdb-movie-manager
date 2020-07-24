@@ -35,7 +35,7 @@ export default class SearchView extends React.Component {
 
     return (
       <Container fluid>
-        <Row>
+        <Row className="mt-4 mx-3">
           <Col sm={3}>
             <SearchPanel
               handleSelectMovie={this.handleNewDetailMovie}

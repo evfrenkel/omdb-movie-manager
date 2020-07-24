@@ -73,7 +73,7 @@ class SearchPanel extends React.Component {
         />
 
         {this.state.listLoading ? (
-          <ProgressBar active now={100} />
+          <ProgressBar animated now={100} />
         ) : (
           <SearchResults
             movies={this.state.searchResults}
