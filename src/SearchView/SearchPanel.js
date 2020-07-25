@@ -4,6 +4,8 @@ import SearchResults from "./SearchResults";
 
 import { ProgressBar } from "react-bootstrap";
 
+import movieAPI from "../movieAPI";
+
 class SearchPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -18,34 +20,14 @@ class SearchPanel extends React.Component {
 
   handleSelect = (id) => {
     this.selectedMovieID = id;
-    fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        id +
-        "?api_key=3058e041b6c8b665ff6e7c489a63e9d8&language=en-US",
-      {}
-    ).then(
-      (res) => {
-        res.json().then((result) => {
-          this.props.handleSelectMovie(result);
-        });
-      },
-      (error) => {
-        console.log(error.message);
-      }
-    );
+
+    movieAPI.getTitleDetails(id).then(this.props.handleSelectMovie);
   };
 
   handleNewSearch = (str) => {
     this.props.handleNewSearch(str);
-    // loading animation state
     this.setState({ listLoading: true });
-    // load search
-    fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        str +
-        "&api_key=3058e041b6c8b665ff6e7c489a63e9d8&language=en-US&page=1&include_adult=false",
-      {}
-    ).then((res) => res.json().then(this.updateMovies));
+    movieAPI.searchTitle(str).then(this.updateMovies);
   };
 
   updateMovies = (r) => {
