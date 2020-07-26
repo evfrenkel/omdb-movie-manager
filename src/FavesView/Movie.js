@@ -1,11 +1,12 @@
 import React from "react";
+import { MoviePoster } from "shared-components";
 
-import { Card, Button, Row, Col, ProgressBar, Image } from "react-bootstrap";
+import { Card, Button, Row, Col, ProgressBar } from "react-bootstrap";
 
 class Movie extends React.Component {
   handleToggleFav = () => {
     this.props.toggleFavorite(this.props.movie);
-  }
+  };
 
   render() {
     if (this.props.loading) return <ProgressBar active now={100} />;
@@ -24,14 +25,7 @@ class Movie extends React.Component {
           <Row>
             <Col sm={12}>
               {this.props.movie.poster_path !== null && (
-                <Image
-                  src={
-                    "https://image.tmdb.org/t/p/w500/" +
-                    this.props.movie.poster_path
-                  }
-                  alt="Poster"
-                  fluid
-                />
+                <MoviePoster path={this.props.movie.poster_path} />
               )}
             </Col>
             <Col sm={12}>

@@ -1,9 +1,9 @@
 import React from "react";
+import { MoviePoster } from "shared-components";
 
 import {
   Badge,
   Button,
-  Image,
   Row,
   Col,
   Table,
@@ -34,14 +34,7 @@ class MovieDetail extends React.Component {
         <Row>
           <Col xs={4}>
             {this.props.movie.poster_path !== null && (
-              <Image
-                src={
-                  "https://image.tmdb.org/t/p/w500/" +
-                  this.props.movie.poster_path
-                }
-                alt="Poster"
-                fluid
-              />
+              <MoviePoster path={this.props.movie.poster_path} />
             )}
           </Col>
           <Col>

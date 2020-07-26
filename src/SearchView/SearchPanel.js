@@ -31,7 +31,6 @@ class SearchPanel extends React.Component {
   };
 
   updateMovies = (r) => {
-    console.log(r);
     if (r.Response !== "False") {
       this.setState({
         noResults: false,
