@@ -39,7 +39,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
         <Navigation
           handleChooseView={this.handleChooseView}
           viewNow={this.state.view}
@@ -56,7 +56,7 @@ class App extends React.Component {
           toggleFavorite={this.toggleFavorite}
           faves={this.state.faves}
         />
-      </>
+      </div>
     );
   }
 }
